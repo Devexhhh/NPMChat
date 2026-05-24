@@ -53,7 +53,7 @@ async function fetcher(
   if (!res.ok) {
     const errorMsg = data?.message || res.statusText || "API Error"
     const error = new Error(errorMsg)
-    ;(error as any).data = data
+      ; (error as any).data = data
     throw error
   }
   return data
@@ -66,4 +66,7 @@ export const api = {
     fetcher(path, { method: "POST", body: JSON.stringify(body) }, base),
   put: (path: string, body?: any, base: "auth" | "messages" = "messages") =>
     fetcher(path, { method: "PUT", body: JSON.stringify(body) }, base),
+  delete: (
+    path: string, base: "auth" | "messages" = "messages",) =>
+    fetcher(path, { method: "DELETE" }, base,),
 }
